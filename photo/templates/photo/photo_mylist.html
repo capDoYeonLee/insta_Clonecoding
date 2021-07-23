@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<!-- object의 list를 돌면서 작성자와 요청자가 같은 것만 보여준다. -->
+<!-- figure class="col-md-4" => 두 개를 나눈 값만큼 1줄에 card를 넣는다. 12/4 = 3개씩-->
+
+<style>
+
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <div id="mdb-lightbox-ui"></div>
+        <div class="mdb-lightbox-no-margin">
+            <div class="row">
+                {% for object in object_list %}
+                {% if object.author == request.user %}
+                <figure class="col-md-4">
+                    <div style="width: 18rem;">
+                        <!-- 이미지 url을 넣어준다.-->
+                        <img src="{{ object.image.url }}" class="card-img-top" alt="...">
+                    </div>
+                </figure>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
+{% endblock %}
